@@ -97,5 +97,18 @@ This is the same paragraph on a new line
         block = "```This is a code```"
         type = block_to_block_type(block)
         self.assertEqual(type, "code")
+        
+    def test_extract_title(self):
+        block = "# This is a heading"
+        title = extract_title(block)
+        self.assertEqual(title, "This is a heading")
+        
+        block = "Random text right here\n\n# This is a heading\n\n* list item1\n* list item2"
+        title = extract_title(block)
+        self.assertEqual(title, "This is a heading")
+        
+        block = "## This is a heading"
+        with self.assertRaises(Exception):
+            extract_title(block)
 if __name__ == "__main__":
     unittest.main()

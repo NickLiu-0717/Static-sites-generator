@@ -29,10 +29,9 @@ def heading_to_htmlnode(block):
 
 def quote_to_htmlnode(block):
     sections = block.split("\n")
-    quote_text_list = list(map(lambda text: text[1:], sections))
+    quote_text_list = list(map(lambda text: text[2:], sections))
     quote_text = "\n".join(quote_text_list)
-    child_of_quote = [ParentNode("p", text_to_children(quote_text))]
-    return ParentNode("blockquote", child_of_quote)
+    return ParentNode("blockquote", text_to_children(quote_text))
 
 def paragraph_to_htmlnode(block):
     lines = block.split('\n')

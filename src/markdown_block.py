@@ -40,3 +40,10 @@ def block_to_block_type(block_of_markdown):
             return "paragraph"
     else:
         return "paragraph"
+    
+def extract_title(markdown):
+    blocks = markdown_to_blocks(markdown)
+    for block in blocks:
+        if block.startswith("# "):
+            return block[2:]
+    raise Exception("No h1 header found")
